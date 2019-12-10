@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+<!-- 포스트 리스트 SELECT SQL -->
+<select id="selectAll" resultType="PostVo" parameterType="long">
+<![CDATA[
+SELECT postNo, cateNo, postTitle, regDate, postContent
+FROM post
+WHERE cateNo = #{cateNo}
+ORDER BY regDate DESC
+]]>
+</select>
+<!-- userNo로 포스트 리스트 SELECT SQL -->
+<select id="selectAllByUserNo" resultType="PostVo" parameterType="long">
+<![CDATA[
+SELECT p.postNo, p.cateNo, p.postTitle, p.regDate, p.postContent
+FROM post p, category c
+WHERE p.cateNo = c.cateNo AND c.userNo = #{userNo}
+ORDER BY regDate DESC
+]]>
+</select>
+<!-- 포스트 등록 INSERT SQL -->
+<insert id="insert" parameterType="PostVo">
+<![CDATA[
+INSERT INTO post
+(postNo, cateNo, postTitle, postContent, regDate)
+VALUES (seq_post_no.nextVal, #{cateNo}, #{postTitle}, #{postContent}, sysdate)
+]]>
+</insert>
+<!-- 가장 최신 포스트 읽기 SELECT SQL -->
+<select id="selectNewest" resultType="PostVo" parameterType="long">
+<![CDATA[
+SELECT postNo, postTitle, regDate, postContent
+FROM post
+WHERE regDate = (
+	SELECT MAX(p.regDate)
+	FROM post p, category c
+	WHERE p.cateNo = c.cateNo AND c.userNo = #{userNo}
+)
+]]>
+</select>
+<!-- 카테고리내 최신 포스트 읽기 SELECT SQL -->
+<select id="selectNewsetOfCate" resultType="PostVo" parameterType="long">
+<![CDATA[
+SELECT postNo, postTitle, regDate, postContent
+FROM post
+WHERE regDate = (
+	SELECT MAX(regDate)
+	FROM post
+	WHERE cateNo = #{cateNo}
+)
+]]>
+</select>
+<!-- 포스트 읽기 SELECT by postNo SQL -->
+<select id="selectByPostNo" resultType="PostVo" parameterType="long">
+<![CDATA[
+SELECT postNo, postTitle, regDate, postContent
+FROM post
+WHERE postNo = #{postNo}
+]]>
+</select>
+</mapper>

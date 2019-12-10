@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	<!-- 가입 INSERT SQL -->
+	<insert id="insert" parameterType="UserVo">
+	<![CDATA[
+	INSERT INTO users
+	(userNo, id, userName, password, joinDate)
+	VALUES(seq_users_no.nextVal, #{id}, #{userName}, #{password}, sysdate)
+	]]>
+	</insert>
+	<!-- ID 중복체크 SELECT SQL -->
+	<select id="selectById" resultType="UserVo" parameterType="String">
+	<![CDATA[
+	SELECT userNO, id, userName, password, joinDate
+	FROM users
+	WHERE id=#{id}	
+	]]>
+	</select>
+	<!-- 로그인 SELECT SQL -->
+	<select id="selectByIdAndPassword" parameterType="UserVo" resultType="UserVo">
+	<![CDATA[
+	SELECT userNo, id, userName, password, joinDate
+	FROM users
+	WHERE id=#{id} AND password=#{password}
+	]]>
+	</select>
+</mapper>

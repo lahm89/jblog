@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+html, body {
+	height:100%;
+	padding:0;
+	margin:0;
+}
+.blogheader {
+	height:200px;
+	background-color:#17A2B8;
+	padding-top:75px;
+	padding-bottom:0;
+}
+.mainheader {
+	height:350px;
+	padding-top:30px;
+	margin-bottom:5px;
+}
+.mainheader a {
+	color:black;
+}
+.getPost {
+	color:black;
+}
+.blogfooter {
+	background-color:#b1c9ca;
+	position:absolute;
+   	bottom:0;
+   	width:100%;
+}
+.wrap {
+	min-height:100%;
+	position:relative;
+	padding-bottom:19px;
+}
+.row {
+	width:100%;
+	margin:0;
+}
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+#loginmenu {
+	margin-top:50px;
+	margin-bottom:0;
+}
+#loginmenu * {
+	color:white;
+}
+#content {
+	margin:20px;
+	margin-top:30px;
+}
+#postContent{
+	min-height:30vh;
+}
+#postContent h4{
+	margin-bottom:20px;
+}
+#postList{
+	margin-top:30px;
+}
+#postList #posttitle {
+	color:black;
+}
+#logoPreview {
+	width:200px;
+}
+
+#maincontent {
+	margin-top:20px;
+	margin-bottom:0;
+}
+#commentForm {
+	background-color:#e0e6e6;
+}
+#logoimg {
+	width:300px;
+	margin-bottom:10px;
+}
+#blogTitleLink {
+	color:white;
+}
+#searchresult {
+	margin-top:50px;
+}
+#searchresult a{
+	color:black;
+}
+#categoryCol {
+	padding-right:0;
+}
